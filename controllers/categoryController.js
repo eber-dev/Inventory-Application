@@ -11,9 +11,9 @@ export async function getCategory(req, res) {
 
     const category = await getCategoryById(id);
 
-    res.render('categories/show', { category });
-
     if (!category) {
         return res.status(404).render('404');
     }
+
+    res.render('categories/show', { category });
 }
