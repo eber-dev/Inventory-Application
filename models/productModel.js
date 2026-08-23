@@ -1,4 +1,4 @@
-import pool from './pool.js';
+import pool from '../db/pool.js';
 
 export async function getAllProducts() {
     const { rows } = await pool.query('SELECT * FROM products;');
