@@ -15,7 +15,7 @@ export async function getCategoryById(id) {
 
 export async function createCategory(name, description) {
     await pool.query(
-        'INSERT INTO categories(name, description) VALUES ($1, $2)',
+        'INSERT INTO categories(name, description) VALUES ($1, $2) RETURNING *`',
         [name, description],
     );
 }
