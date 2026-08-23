@@ -4,6 +4,9 @@ import rutasproducto from './routes/productsRouter.js';
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use('/categories', rutascategoria);
 app.use('/products', rutasproducto);
 
