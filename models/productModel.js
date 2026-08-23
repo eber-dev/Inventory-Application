@@ -28,7 +28,7 @@ export async function createProduct(
     category_id,
 ) {
     await pool.query(
-        'INSERT INTO products (name, description, price,stock,category_id) VALUES ($1,$2,$3,$4,$5) RETURNING *`',
+        'INSERT INTO products (name, description, price,stock,category_id) VALUES ($1,$2,$3,$4,$5) RETURNING *',
         [name, description, price, stock, category_id],
     );
 }

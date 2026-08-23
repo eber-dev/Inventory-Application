@@ -14,10 +14,12 @@ export async function getCategoryById(id) {
 }
 
 export async function createCategory(name, description) {
-    await pool.query(
-        'INSERT INTO categories(name, description) VALUES ($1, $2) RETURNING *`',
+    const result = await pool.query(
+        'INSERT INTO categories(name, description) VALUES ($1, $2) RETURNING *',
         [name, description],
     );
+
+    return result.rows[0];
 }
 
 export async function updateCategory(id, name, description) {
