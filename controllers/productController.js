@@ -27,7 +27,7 @@ export async function getProduct(req, res) {
     res.json(product);
 }
 
-export async function createProduct(req, res) {
+export async function addProduct(req, res) {
     const { name, description, price, stock, category_id } = req.body;
 
     const newProduct = await createProduct(

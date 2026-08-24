@@ -24,10 +24,10 @@ export async function getCategory(req, res) {
     res.json(category);
 }
 
-export async function createCategory(req, res) {
+export async function addCategory(req, res) {
     const { name, description } = req.body;
 
-    const newCategory = await createCategoryModel(name, description);
+    const newCategory = await createCategory(name, description);
 
     res.status(201).json(newCategory);
 }
