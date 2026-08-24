@@ -2,6 +2,7 @@ import {
     getAllCategories,
     getCategoryById,
     createCategory,
+    updateCategory,
 } from '../models/categoryModel.js';
 
 export async function getCategories(req, res) {
@@ -30,6 +31,15 @@ export async function addCategory(req, res) {
     const newCategory = await createCategory(name, description);
 
     res.status(201).json(newCategory);
+}
+
+export async function actualizeCategory(req, res) {
+    const { id } = req.params;
+    const { name, description } = req.body;
+
+    const cambioCategory = await updateCategory(id, name, description);
+
+    res.status(200).json(cambioCategory);
 }
 
 export async function deleteCategory(req, res) {}

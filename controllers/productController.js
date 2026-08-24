@@ -2,6 +2,7 @@ import {
     getAllProducts,
     getProductById,
     createProduct,
+    updateProduct,
 } from '../models/productModel.js';
 
 export async function getProducts(req, res) {
@@ -39,6 +40,23 @@ export async function addProduct(req, res) {
     );
 
     res.status(201).json(newProduct);
+}
+
+export async function actualizeProduct(req, res) {
+    const { id } = req.params;
+
+    const { name, description, price, stock, category_id } = req.body;
+
+    const cambioProduct = await updateProduct(
+        id,
+        name,
+        description,
+        price,
+        stock,
+        category_id,
+    );
+
+    res.status(200).json(cambioProduct);
 }
 
 export async function deleteProduct(req, res) {}
