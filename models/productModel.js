@@ -27,10 +27,12 @@ export async function createProduct(
     stock,
     category_id,
 ) {
-    await pool.query(
+    const result = await pool.query(
         'INSERT INTO products (name, description, price,stock,category_id) VALUES ($1,$2,$3,$4,$5) RETURNING *',
         [name, description, price, stock, category_id],
     );
+
+    return result.rows[0];
 }
 
 export async function updateProduct(
