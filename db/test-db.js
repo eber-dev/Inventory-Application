@@ -10,6 +10,7 @@ try {
     console.log(resultado.rows);
 } catch (error) {
     console.error('Error de conexión:');
+
     console.error(error.message);
 } finally {
     await pool.end();
