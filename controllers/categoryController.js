@@ -3,6 +3,7 @@ import {
     getCategoryById,
     createCategory,
     updateCategory,
+    deleteCategory,
 } from '../models/categoryModel.js';
 
 export async function getCategories(req, res) {
@@ -42,4 +43,23 @@ export async function actualizeCategory(req, res) {
     res.status(200).json(cambioCategory);
 }
 
-export async function deleteCategory(req, res) {}
+export async function removeCategory(req, res) {
+    try {
+        const { id } = req.params;
+
+        const eliminarCategoria = await deleteCategory(id);
+
+        res.status(200).json(eliminarCategoria);
+    } catch (error) {
+        if (error.code === '23503') {
+            return res.status(409).json({
+                message:
+                    'No se puede eliminar la categoría porque tiene productos asociados',
+            });
+        }
+
+        res.status(500).json({
+            message: 'Error al eliminar la categoría',
+        });
+    }
+}
