@@ -4,6 +4,7 @@ import {
     getCategory,
     addCategory,
     actualizeCategory,
+    removeCategory,
 } from '../controllers/categoryController.js';
 
 const rutascategoria = Router();
@@ -15,5 +16,7 @@ rutascategoria.get('/:id', getCategory);
 rutascategoria.post('/', addCategory);
 
 rutascategoria.put('/:id', actualizeCategory);
+
+rutascategoria.delete('/:id', removeCategory);
 
 export default rutascategoria;
