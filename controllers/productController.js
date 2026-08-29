@@ -3,6 +3,7 @@ import {
     getProductById,
     createProduct,
     updateProduct,
+    deleteProduct,
 } from '../models/productModel.js';
 
 export async function getProducts(req, res) {
@@ -59,4 +60,10 @@ export async function actualizeProduct(req, res) {
     res.status(200).json(cambioProduct);
 }
 
-export async function deleteProduct(req, res) {}
+export async function removeProduct(req, res) {
+    const { id } = req.params;
+
+    const eliminarProduct = await deleteProduct(id);
+
+    res.status(201).json(eliminarProduct);
+}
