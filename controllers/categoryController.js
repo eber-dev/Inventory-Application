@@ -6,6 +6,8 @@ import {
     deleteCategory,
 } from '../models/categoryModel.js';
 
+import { validateId } from '../middleware/validateID.js';
+
 export async function getCategories(req, res) {
     try {
         const categories = await getAllCategories();
@@ -21,14 +23,6 @@ export async function getCategories(req, res) {
 
 export async function getCategory(req, res) {
     const { id } = req.params;
-
-    const esNumero = Number(id);
-
-    if (!Number.isInteger(esNumero) || esNumero <= 0) {
-        return res.status(400).json({
-            error: 'El ID debe ser un entero positivo',
-        });
-    }
 
     try {
         const category = await getCategoryById(id);
@@ -79,14 +73,6 @@ export async function actualizeCategory(req, res) {
     const { id } = req.params;
     const { name, description } = req.body;
 
-    const esNumero = Number(id);
-
-    if (!Number.isInteger(esNumero) || esNumero <= 0) {
-        return res.status(400).json({
-            error: 'El ID debe ser un entero positivo',
-        });
-    }
-
     if (!name || name.trim() === '') {
         return res.status(400).json({
             error: 'El nombre es obligatorio',
@@ -119,13 +105,6 @@ export async function actualizeCategory(req, res) {
 export async function removeCategory(req, res) {
     const { id } = req.params;
 
-    const esNumero = Number(id);
-
-    if (!Number.isInteger(esNumero) || esNumero <= 0) {
-        return res.status(400).json({
-            error: 'El ID debe ser un entero positivo',
-        });
-    }
     try {
         const eliminarCategoria = await deleteCategory(id);
 
