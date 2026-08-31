@@ -1,5 +1,5 @@
 
-GET http://localhost:3000/products
+GET http://localhost:3000/products/999
 
 ### 
 
@@ -13,9 +13,19 @@ Content-Type: application/json
 {
     "name": "Queso",
     "description": "Queso freso",
-    "price": "17.00",
+    "price": 17.00,
     "stock": 5,
-    "category_id": 2
+    "category_id": 6
+}
+
+###
+
+POST http://localhost:3000/categories
+Content-Type: application/json
+
+{
+    "name": "Prueba",
+    "description": "Clase añadida para probar peticiones"
 }
 
 ###
@@ -26,10 +36,16 @@ Content-Type: application/json
 {
     "name": "Queso",
     "description": "Queso fresco",
-    "price": "17.00",
+    "price": 17.00,
     "stock": 5,
     "category_id": 2
 }
 
 ###
-DELETE http://localhost:3000/products/6
+DELETE http://localhost:3000/products/7
+
+###
+
+DELETE http://localhost:3000/categories/6
+
+
