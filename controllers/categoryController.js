@@ -6,8 +6,6 @@ import {
     deleteCategory,
 } from '../models/categoryModel.js';
 
-import { validateId } from '../middleware/validateID.js';
-
 export async function getCategories(req, res) {
     try {
         const categories = await getAllCategories();
