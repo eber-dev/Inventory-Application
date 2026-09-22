@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+
+<h1>Gestión de Categorías</h1>
+
+<section class="card">
+    <h2>Crear Nueva Categoría</h2>
+    <form action="/categories" method="POST">
+        <input type="text" name="name" placeholder="Nombre" required />
+        <textarea
+            name="description"
+            placeholder="Descripción"
+            required
+        ></textarea>
+        <button type="submit">Guardar</button>
+    </form>
+</section>
+
+<section class="card">
+    <h2>Lista de Categorías</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categories.forEach(cat => { %>
+            <tr>
+                <td><%= cat.id %></td>
+                <td><%= cat.name %></td>
+                <td><%= cat.description %></td>
+                <td>
+                    <a href="/categories/<%= cat.id %>" class="btn-edit"
+                        >Editar</a
+                    >
+                    <form
+                        action="/categories/<%= cat.id %>?_method=DELETE"
+                        method="POST"
+                        class="inline-form btn-delete-form"
+                    >
+                        <button type="submit" class="btn-delete">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</section>
+
+<%- include('../partials/footer') %>
