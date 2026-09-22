@@ -1,0 +1,75 @@
+<%- include('../partials/header') %>
+
+<h1>Gestión de Productos</h1>
+
+<section class="card">
+    <h2>Crear Nuevo Producto</h2>
+    <form action="/products" method="POST">
+        <input type="text" name="name" placeholder="Nombre" required />
+        <textarea
+            name="description"
+            placeholder="Descripción"
+            required
+        ></textarea>
+        <input
+            type="number"
+            name="price"
+            placeholder="Precio"
+            step="0.01"
+            required
+        />
+        <input type="number" name="stock" placeholder="Stock" required />
+
+        <select name="category_id" required>
+            <option value="">Seleccione una categoría</option>
+            <% categories.forEach(cat => { %>
+            <option value="<%= cat.id %>"><%= cat.name %></option>
+            <% }) %>
+        </select>
+
+        <button type="submit">Guardar</button>
+    </form>
+</section>
+
+<section class="card">
+    <h2>Lista de Productos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Cat ID</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(prod => { %>
+            <tr>
+                <td><%= prod.id %></td>
+                <td><%= prod.name %></td>
+                <td>$<%= prod.price %></td>
+                <td><%= prod.stock %></td>
+                <td><%= prod.category_id %></td>
+                <td>
+                    <a href="/products/<%= prod.id %>" class="btn-edit"
+                        >Editar</a
+                    >
+                    <form
+                        action="/products/<%= prod.id %>?_method=DELETE"
+                        method="POST"
+                        class="inline-form btn-delete-form"
+                    >
+                        <button type="submit" class="btn-delete">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</section>
+
+<%- include('../partials/footer') %>
