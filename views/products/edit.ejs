@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+<h1>Editar Producto: <%= product.name %></h1>
+
+<section class="card">
+    <form action="/products/<%= product.id %>?_method=PUT" method="POST">
+        
+        <input type="text" name="name" value="<%= product.name %>" required>
+        
+        <textarea name="description" required><%= product.description %></textarea>
+        
+        <input type="number" name="price" step="0.01" value="<%= product.price %>" required>
+        
+        <input type="number" name="stock" value="<%= product.stock %>" required>
+        
+        <select name="category_id" required>
+            <option value="">Seleccione una categoría</option>
+            <% categories.forEach(cat => { %>
+                <option value="<%= cat.id %>" <%= cat.id === product.category_id ? 'selected' : '' %>>
+                    <%= cat.name %>
+                </option>
+            <% }) %>
+        </select>
+        
+        <button type="submit">Actualizar</button>
+        <a href="/products">Cancelar</a>
+    </form>
+</section>
+
+<%- include('../partials/footer') %>

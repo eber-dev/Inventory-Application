@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+<h1>
+    Editar Categoría:
+    <%= category.name %>
+</h1>
+
+<section class="card">
+    <form action="/categories/<%= category.id %>?_method=PUT" method="POST">
+        <input type="text" name="name" value="<%= category.name %>" required />
+        <textarea name="description" required>
+<%= category.description %></textarea>
+        <button type="submit">Actualizar</button>
+        <a href="/categories">Cancelar</a>
+    </form>
+</section>
+
+<%- include('../partials/footer') %>
